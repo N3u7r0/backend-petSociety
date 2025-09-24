@@ -1,0 +1,9 @@
+### Crear una mascota
+POST  http://localhost:5100/api/mascotas/perros
+
+{
+  "nombre": "Luna",
+  "raza": "Golden Retriever",
+  "edad": 3,
+  "peso": 28.5
+}
