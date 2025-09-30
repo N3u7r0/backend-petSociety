@@ -1,5 +1,6 @@
 ### Crear una mascota
 POST  http://localhost:5100/api/mascotas/perros
+Content-Type: application/json
 
 {
   "nombre": "Luna",

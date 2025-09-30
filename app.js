@@ -8,6 +8,8 @@ const app = express();
 
 // middleware para parsear JSON
 app.use(express.json());
+// para q decodifique los datos que vienen de un formulario
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   return res.end("API petSociety. Brian Fabian Sabatini");

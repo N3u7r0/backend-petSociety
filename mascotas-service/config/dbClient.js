@@ -1,6 +1,6 @@
 import dbClientFactory from "../../helpers/dbClientFactory.js";
 
-export const dbClient = new dbClientFactory("mascotas-db");
+export const dbClient = new dbClientFactory("mascotas");
 await dbClient.conectar();
 
-const db = dbClient.getDB();
+export const db = dbClient.getDB();
