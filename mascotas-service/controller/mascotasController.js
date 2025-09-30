@@ -14,7 +14,12 @@ export class MascotasController {
 
   async getAll(req, res) {
     try {
-      res.status(201).json({ status: "ok-getAll-mascotas" });
+      const tipo = req.params.tipo; // "perros" o "gatos"
+      const model = new MascotasModel();
+      const data = await model.getAll(tipo);
+      console.log(tipo);
+      
+      res.status(201).json(data);
     } catch (err) {
       console.error("Error en GET-ALL mascota:", err);
       res.status(500).send(err);

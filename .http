@@ -3,7 +3,7 @@ POST  http://localhost:5100/api/mascotas/perros
 Content-Type: application/json
 
 {
-  "nombre": "Luna",
+  "nombre": "Lunaaaaaa",
   "raza": "Golden Retriever",
   "edad": 3,
   "peso": 28.5

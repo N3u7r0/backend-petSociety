@@ -17,8 +17,8 @@ app.get("/", (req, res) => {
 });
 
 //rutas
-app.use("/api/mascotas/gatos", mascotasRoute);
-app.use("/api/mascotas/perros", mascotasRoute);
+/* app.use("/api/mascotas/gatos", mascotasRoute);
+app.use("/api/mascotas/perros", mascotasRoute); */
 app.use("/api/mascotas", mascotasRoute);
 app.use("/api/usuarios", usuariosRoute);
 app.use("/api/refugio", refugioRoute);
