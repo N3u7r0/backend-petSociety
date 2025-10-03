@@ -1,10 +1,11 @@
 ### Crear una mascota
-POST  http://localhost:5100/api/mascotas/perros
+POST    http://localhost:5100/api/mascotas/68e033d54d4e973b17761c4e
 Content-Type: application/json
 
 {
-  "nombre": "Lunaaaaaa",
-  "raza": "Golden Retriever",
-  "edad": 3,
-  "peso": 28.5
+    "nombre":"alma",
+    "edad":3,
+    "tipo":"perro",
 }
+
+

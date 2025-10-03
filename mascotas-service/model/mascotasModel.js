@@ -1,23 +1,36 @@
 import { dbClient } from "../config/dbClient.js";
+import { ObjectId } from "mongodb";
 
 export class MascotasModel {
   constructor() {}
-  async create(mascota, tipo) {
-    const coleccion = dbClient.db.collection(tipo); // "perros" o "gatos"
-    return await coleccion.insertOne(mascota);
+
+  async create(body) {
+    const coleccion = dbClient.db.collection("mascotas");
+    return await coleccion.insertOne(body);
   }
 
-  async getAll(tipo) {
-    if (!tipo) {
-      console.log(tipo);
-
-      const perros = dbClient.db.collection("perros").find({}).toArray();
-      const gatos = dbClient.db.collection("gatos").find({}).toArray();
-      const [resPerros, resGatos] = await Promise.all([perros, gatos]);
-      return [...resPerros, ...resGatos];
-    }
-
-    const coleccion = dbClient.db.collection(tipo);
+  async getAll() {
+    const coleccion = dbClient.db.collection("mascotas");
     return await coleccion.find({}).toArray();
+  }
+
+  async getOne(id) {
+    const coleccion = dbClient.db.collection("mascotas");
+    return await coleccion.findOne({ _id: new ObjectId(id) });
+  }
+
+  async delete(id) {
+    const coleccion = dbClient.db.collection("mascotas");
+    return await coleccion.deleteOne({ _id: new ObjectId(id) });
+  }
+
+  async update(id, body) {
+    if (!ObjectId.isValid(id)) throw new Error("ID inválido");
+    const coleccion = dbClient.db.collection("mascotas");
+    return await coleccion.findOneAndUpdate(
+      { _id: new ObjectId(id) },
+      { $set: body },
+      { returnDocument: "after" }
+    );
   }
 }
