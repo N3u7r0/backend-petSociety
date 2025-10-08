@@ -4,9 +4,9 @@ import { ObjectId } from "mongodb";
 export class MascotasModel {
   constructor() {}
 
-  async create(body) {
+  async create(mascota) {
     const coleccion = dbClient.db.collection("mascotas");
-    return await coleccion.insertOne(body);
+    return await coleccion.insertOne(mascota);
   }
 
   async getAll() {
@@ -24,13 +24,8 @@ export class MascotasModel {
     return await coleccion.deleteOne({ _id: new ObjectId(id) });
   }
 
-  async update(id, body) {
-    if (!ObjectId.isValid(id)) throw new Error("ID inválido");
+  async update(id, mascota) {
     const coleccion = dbClient.db.collection("mascotas");
-    return await coleccion.findOneAndUpdate(
-      { _id: new ObjectId(id) },
-      { $set: body },
-      { returnDocument: "after" }
-    );
+    return await coleccion.updateOne({ _id: new ObjectId(id) }, {$set: mascota});
   }
 }

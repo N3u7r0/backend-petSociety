@@ -5,15 +5,13 @@ const model = new MascotasModel();
 export class MascotasController {
   constructor() {}
 
-  async getOne(req, res) {
+  async create(req, res) {
     try {
-      const { id } = req.params;
-      const data = await model.getOne(id);
-      console.log(id);
-      console.log(data);
+      console.log("body recibido: ", req.body);
+      const data = await model.create(req.body);
       res.status(201).json(data);
     } catch (err) {
-      console.error("Error en GET-ONE mascota:", err);
+      console.error("Error en CREATE mascota:", err);
       res.status(500).send(err);
     }
   }
@@ -29,27 +27,13 @@ export class MascotasController {
     }
   }
 
-  async create(req, res) {
-    try {
-      console.log("body recibido: ", req.body);
-      const data = await model.create(req.body);
-      res.status(201).json(data);
-    } catch (err) {
-      console.error("Error en CREATE mascota:", err);
-      res.status(500).send(err);
-    }
-  }
-
-  async update(req, res) {
+  async getOne(req, res) {
     try {
       const { id } = req.params;
-      const body = req.body;
-      const result = await model.update(id, body);
-      if (!result.value)
-        return res.status(404).json({ error: "Mascota no encontrada" });
-      res.status(200).json(result.value);
+      const data = await model.getOne(id);
+      res.status(201).json(data);
     } catch (err) {
-      console.error("Error en UPDATE mascota:", err);
+      console.error("Error en GET-ONE mascota:", err);
       res.status(500).send(err);
     }
   }
@@ -58,11 +42,20 @@ export class MascotasController {
     try {
       const { id } = req.params;
       const data = await model.delete(id);
-      console.log(id);
-      console.log(data);
-      res.status(201).json(data);
+      res.status(206).json(data);
     } catch (err) {
       console.error("Error en DELETE mascota:", err);
+      res.status(500).send(err);
+    }
+  }
+
+  async update(req, res) {
+    try {
+      const { id } = req.params;
+      const data = await model.update(id, req.body);
+      res.status(200).json(data);
+    } catch (err) {
+      console.error("Error en UPDATE mascota:", err);
       res.status(500).send(err);
     }
   }

@@ -1,11 +1,6 @@
-### Crear una mascota
-POST    http://localhost:5100/api/mascotas/68e033d54d4e973b17761c4e
+
+DELETE    http://localhost:5100/api/mascotas/68e6f03e8ae5b7d99abfb58
 Content-Type: application/json
 
-{
-    "nombre":"alma",
-    "edad":3,
-    "tipo":"perro",
-}
 
 
